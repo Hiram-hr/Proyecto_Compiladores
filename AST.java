@@ -11,7 +11,7 @@ public class AST implements Parser{
         this.tokens=tokens;
         preanalisis=this.tokens.get(i);
     }
-    private List<Statement> PROGRAM(){
+    public List<Statement> PROGRAM(){
         List<Statement> statements = new ArrayList<>();
         DECLARATION(statements);
         return statements;
@@ -179,7 +179,7 @@ public class AST implements Parser{
            return new StmtLoop(condition, body);
     }
 
-    private Statement FUNCTION(){
+    private Statement FUNCTION(){//suma(1,2) { }
             match(TipoToken.IDENTIFIER);
             Token t=previous();
             match(TipoToken.LEFT_PAREN);
@@ -466,9 +466,23 @@ public class AST implements Parser{
     private Token previous() {
         return this.tokens.get(i - 1);
     }
-
     @Override
     public List<Statement> parse(){
        return PROGRAM();
     }
+    
+    /*@Override
+    public boolean parse() {
+
+        PROGRAM();
+
+        if (preanalisis.tipo == TipoToken.EOF && !hayErrores) {
+            System.out.println("Sintáxis correcta");
+            return false;
+        } else {
+            System.out.println("Se encontraron errores");
+            return true;
+        }
+        
+    }*/
 }
