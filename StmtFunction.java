@@ -1,6 +1,7 @@
+
 import java.util.List;
 
-public class StmtFunction extends Statement {
+public class StmtFunction extends Statement { 
     final Token name;
     final List<Token> params;
     final StmtBlock body;
@@ -9,5 +10,12 @@ public class StmtFunction extends Statement {
         this.name = name;
         this.params = params;
         this.body = body;
+    }
+
+    @Override
+    public Object execute(TablaSimbolos tablaSimbolos) {
+
+        tablaSimbolos.asignar(name.lexema, this);
+        return null;
     }
 }
