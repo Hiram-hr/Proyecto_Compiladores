@@ -68,7 +68,7 @@ public class Principal {
         if(tree!=null){
                 
                 // Árbol y tabla de símbolos
-                Arbol arbol = new Arbol(tokens);
+                ASTaux arbol = new ASTaux(tokens);
                 TablaSimbolos tabla = new TablaSimbolos();
 
                 List<Statement> programa = arbol.PROGRAM();
